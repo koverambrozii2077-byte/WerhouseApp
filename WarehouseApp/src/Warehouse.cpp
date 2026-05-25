@@ -18,8 +18,7 @@ int Warehouse::generateNewId() const {
 bool Warehouse::addProduct(const std::string& name, const std::string& category, double price, int quantity) {
     // Валидация входных данных
     if (name.empty() || category.empty() || price < 0 || quantity < 0) {
-        std::cout << "[DEBUG] Ошибка валидации: name=" << name 
-                  << ", price=" << price << ", quantity=" << quantity << "\n";
+        
         return false;
     }
     
@@ -41,10 +40,6 @@ bool Warehouse::addProduct(const std::string& name, const std::string& category,
         nextId = newId + 1;
     }
     
-    std::cout << "[DEBUG] Добавлен товар: ID=" << newProduct.id 
-              << ", name=" << newProduct.name 
-              << ", price=" << newProduct.price 
-              << ", quantity=" << newProduct.quantity << "\n";
     
     return true;
 }
@@ -53,18 +48,16 @@ bool Warehouse::editProduct(int id, const std::string& name, const std::string& 
     for (auto& p : products) {
         if (p.id == id) {
             if (name.empty() || category.empty() || price < 0 || quantity < 0) {
-                std::cout << "[DEBUG] Ошибка редактирования: неверные данные\n";
+              
                 return false;
             }
             p.name = name;
             p.category = category;
             p.price = price;
             p.quantity = quantity;
-            std::cout << "[DEBUG] Изменён товар ID=" << id << "\n";
             return true;
         }
     }
-    std::cout << "[DEBUG] Товар с ID=" << id << " не найден\n";
     return false;
 }
 

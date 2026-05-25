@@ -34,8 +34,6 @@ bool FileIO::loadFromFile(const std::string& filename, std::vector<Product>& out
                 int quantity = std::stoi(quantityStr); // ← 5-е поле = количество
                 
                 outProducts.push_back(Product(id, name, category, price, quantity));
-                std::cout << "[DEBUG] Загружен: ID=" << id << ", " << name 
-                          << ", цена=" << price << ", кол-во=" << quantity << "\n";
                           
             } catch (const std::exception& e) {
                 std::cout << "[ERROR] Строка " << lineNum << ": " << e.what() << "\n";
@@ -65,8 +63,6 @@ bool FileIO::saveToFile(const std::string& filename, const std::vector<Product>&
              << p.price << ","      // ← цена на 4-м месте
              << p.quantity << "\n"; // ← количество на 5-м месте
              
-        std::cout << "[DEBUG] Записан: ID=" << p.id << ", " << p.name 
-                  << ", цена=" << p.price << ", кол-во=" << p.quantity << "\n";
     }
     
     file.close();

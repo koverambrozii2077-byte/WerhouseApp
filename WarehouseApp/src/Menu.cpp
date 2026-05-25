@@ -15,14 +15,6 @@ Menu::Menu(const std::string& filePath) : dataFilePath(filePath) {
         std::cout << "[INFO] Файл данных не найден. Начинаем с пустого склада.\n";
     }
 }
-void Menu::debugShowProduct(const Product& p) {
-    std::cout << "[DEBUG] ID=" << p.id 
-              << ", Name=" << p.name 
-              << ", Category=" << p.category 
-              << ", Price=" << p.price 
-              << ", Quantity=" << p.quantity 
-              << ", Total=" << p.totalCost() << "\n";
-}
 
 void Menu::printHeader(const std::string& title) {
     std::cout << "\n========== " << title << " ==========\n";
@@ -44,12 +36,6 @@ void Menu::showProducts(const std::vector<Product>& products, const std::string&
         std::cout << "Нет товаров.\n";
         return;
     }
-    
-    // Диагностика: проверяем первый товар
-    if (!products.empty()) {
-        debugShowProduct(products[0]);
-    }
-    
     std::cout << std::left << std::setw(5) << "ID" 
               << std::setw(20) << "Название"
               << std::setw(15) << "Категория"
