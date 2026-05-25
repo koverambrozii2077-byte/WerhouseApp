@@ -1,23 +1,22 @@
-CXX = clang++
-CXXFLAGS = -std=c++17 -stdlib=libc++ -Wall -Wextra -g
-TARGET = warehouse
-SRCS = src/main.cpp src/Product.cpp src/Warehouse.cpp src/FileIO.cpp src/Menu.cpp
+CXX = g++
+CXXFLAGS = -std=c++17 -Wall -Wextra -g
+TARGET = warehouse.exe
+
+SRCS = $(wildcard src/*.cpp)
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(TARGET)
 
 $(TARGET): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS) $(TARGET)
+	del /Q src\*.o $(TARGET) 2>nul
 
 run: $(TARGET)
-	./$(TARGET)
+	$(TARGET)
 
-rebuild: clean all
-
-.PHONY: all clean run rebuild
+.PHONY: all clean run

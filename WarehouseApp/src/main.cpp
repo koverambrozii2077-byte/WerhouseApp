@@ -1,10 +1,18 @@
 #include <iostream>
 #include <locale>
 
+#ifdef _WIN32
+    #include <windows.h>
+#endif
+
 void setupConsole() {
-    std::setlocale(LC_ALL, "en_US.UTF-8");
-    std::locale::global(std::locale("en_US.UTF-8"));
-    // Не отключаем синхронизацию на macOS
+    #ifdef _WIN32
+        SetConsoleOutputCP(65001); 
+        SetConsoleCP(65001);        
+        setlocale(LC_ALL, "ru_RU.UTF-8");
+    #else
+        std::locale::global(std::locale("ru_RU.UTF-8"));
+    #endif
 }
 
 #include "Menu.h"

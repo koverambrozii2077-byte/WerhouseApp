@@ -12,6 +12,7 @@ private:
     int nextId;
 
 public:
+    int generateNewId() const;
     Warehouse();
 
     // CRUD
@@ -41,5 +42,7 @@ public:
     void clear();
     bool isEmpty() const { return products.empty(); }
 };
+
+
 
 #endif

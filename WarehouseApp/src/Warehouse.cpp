@@ -5,15 +5,41 @@
 
 Warehouse::Warehouse() : nextId(1) {}
 
+int Warehouse::generateNewId() const {
+    int maxId = 0;
+    for (const auto& product : products) {
+        if (product.id > maxId) {
+            maxId = product.id;
+        }
+    }
+    return maxId + 1;
+}
+
 bool Warehouse::addProduct(const std::string& name, const std::string& category, double price, int quantity) {
+    // Валидация входных данных
     if (name.empty() || category.empty() || price < 0 || quantity < 0) {
         std::cout << "[DEBUG] Ошибка валидации: name=" << name 
                   << ", price=" << price << ", quantity=" << quantity << "\n";
         return false;
     }
     
-    Product newProduct(nextId++, name, category, price, quantity);
+    // Поиск максимального ID среди существующих товаров
+    int maxId = 0;
+    for (const auto& product : products) {
+        if (product.id > maxId) {
+            maxId = product.id;
+        }
+    }
+    
+    // Создание нового товара со следующим ID
+    int newId = maxId + 1;
+    Product newProduct(newId, name, category, price, quantity);
     products.push_back(newProduct);
+    
+    // Обновляем nextId для возможного использования в других методах
+    if (newId >= nextId) {
+        nextId = newId + 1;
+    }
     
     std::cout << "[DEBUG] Добавлен товар: ID=" << newProduct.id 
               << ", name=" << newProduct.name 
