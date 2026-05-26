@@ -18,6 +18,27 @@
 - Расчёта аналитических показателей
 - Сохранения и загрузки данных в текстовом файле
 
+Структура проекта:
+WAREHOUSEAPP/
+├── data/
+│ └── products.txt
+├── src/
+│ ├── FileIO.cpp
+│ ├── FileIO.h
+│ ├── main.cpp
+│ ├── main.h
+│ ├── Menu.cpp
+│ ├── Menu.h
+│ ├── Product.cpp
+│ ├── Product.h
+│ ├── Warehouse.cpp
+│ └── Warehouse.h
+├── CMakeLists.txt
+├── makefile
+├── README.md
+├── warehouse
+└── warehouse.exe
+
 Технические требования:
 - Язык - C++17
 - Компилятор - GCC (MinGW)
